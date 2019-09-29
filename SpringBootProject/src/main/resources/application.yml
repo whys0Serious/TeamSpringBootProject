@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://180.76.113.20:3306/java001?useUnicode=true&characterEncoding=utf-8
+    username: java001
+    password: java123456
+  #email配置
+  mail:
+     host: smtp.qq.com
+     username: 547303896@qq.com
+  #QQ邮箱的授权码
+     password: zwpkhqcmtsurbecf
+  properties:
+    mail.smtp.auth: true
+    mail.smtp.starttls.enable: true
+    mail.smtp.starttls.required: true
+    mail.default-encoding: UTF-8
+  mvc:
+   static-path-pattern: static/**
+
+#配置mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
