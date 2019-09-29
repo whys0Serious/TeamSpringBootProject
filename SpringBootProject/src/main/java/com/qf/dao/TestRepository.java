@@ -7,5 +7,4 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface TestRepository extends JpaRepository<User,Integer> {
-
 }

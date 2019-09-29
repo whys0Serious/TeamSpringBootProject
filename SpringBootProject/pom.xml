@@ -73,6 +73,12 @@
             <version>7.2.11</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-mock</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+
     </dependencies>
     <!--逆向工程插件-->
     <build>
