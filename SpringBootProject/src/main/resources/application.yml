@@ -17,6 +17,14 @@ spring:
     mail.default-encoding: UTF-8
   mvc:
    static-path-pattern: static/**
+  #jpa配置
+ jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+    hibernate.ddl-auto: update
+    hibernate:
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
 #配置mybatis
 mybatis:
