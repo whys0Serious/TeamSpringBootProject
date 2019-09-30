@@ -6,7 +6,7 @@ spring:
     database: mysql
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://180.76.113.20:3306/java001?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://180.76.113.20:3306/java001?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: java001
     password: java123456
   #email配置
@@ -15,11 +15,11 @@ spring:
      username: 547303896@qq.com
   #QQ邮箱的授权码
      password: zwpkhqcmtsurbecf
-  properties:
-    mail.smtp.auth: true
-    mail.smtp.starttls.enable: true
-    mail.smtp.starttls.required: true
-    mail.default-encoding: UTF-8
+     properties:
+        mail.smtp.auth: true
+        mail.smtp.starttls.enable: true
+        mail.smtp.starttls.required: true
+        mail.default-encoding: UTF-8
   mvc:
    static-path-pattern: static/**
  #配置mybatis

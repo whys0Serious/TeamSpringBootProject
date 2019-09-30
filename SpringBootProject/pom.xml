@@ -48,7 +48,6 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.0.1</version>
         </dependency>
-
         <!--邮件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -78,7 +77,6 @@
             <artifactId>spring-mock</artifactId>
             <version>2.0.8</version>
         </dependency>
-
     </dependencies>
     <!--逆向工程插件-->
     <build>
