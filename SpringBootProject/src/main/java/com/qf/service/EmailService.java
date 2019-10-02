@@ -7,9 +7,11 @@ public interface EmailService {
 
     boolean isCode(String email);
 
-    boolean isStatus(String email);
+    String isStatus(String email);
 
     void setStatus(String email);
 
     String deleteemail(Integer id);
+
+    String checkemailcode(String mail, String code);
 }

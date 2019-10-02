@@ -22,7 +22,9 @@ public class MailUtils {
         simpleMailMessage.setTo(mailname);
         simpleMailMessage.setFrom(sendusername);
         simpleMailMessage.setSubject("邮箱验证码");
-        simpleMailMessage.setText("亲爱用户,你的验证码为:"+randomcode+"请你妥善把保管(001Team)");
+        simpleMailMessage.setText("亲爱的用户,你的验证码为:"+randomcode+",请你妥善把保管(001Team)");
+        //将验证码发送到对方邮箱中
+//        javaMailSender.send(simpleMailMessage);
         return randomcode;
     }
     private  String randomcode(){
@@ -30,18 +32,18 @@ public class MailUtils {
          * 字母数字随机数池
          */
         String ucode="abcdefghijklmnopqrstuvwxyz";
-        String lcode=ucode.toUpperCase();
+//        String lcode=ucode.toUpperCase();
         String ncode="123457890";
-        String code=ucode+lcode+ncode;
+        String code=ucode+ncode;
         //随机生成6位数随机池中的字符
-        char c[]=new char[6];
+        StringBuffer str=new StringBuffer();
         Random random=new Random();
         for (int i = 0; i < 6; i++) {
             int lenth=code.length()-1;
             int rindex=random.nextInt(lenth);
-            c[i] = code.charAt(rindex);
+            str.append(code.substring(rindex-1,rindex));
         }
         //用数组工具类返回数组字符串
-        return Arrays.toString(c);
+        return str.toString();
     }
 }

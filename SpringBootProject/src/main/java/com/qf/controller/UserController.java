@@ -10,10 +10,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *用户给管理模块
@@ -26,22 +23,26 @@ public class UserController {
     @Autowired
     private EmailService emailService;
     @RequestMapping(value = "/registry",method = RequestMethod.POST)
-    public String regissrty(@RequestBody User user){
+    public String regisrty(@RequestBody User user){
         //验证邮箱用户是否激活
-        if(!emailService.isStatus(user.getEmail()))
-            return "用户已经激活";
-
-
         //验证邮箱吗是否正确
-        if(!emailService.isCode(user.getEmail()))
-            return "邮箱验证码不正确";
+        try {
+            if(userService.registry(user)){
+                emailService.setStatus(user.getEmail());
+                return "注册成功";
+            }
+        }catch (Exception e){
+            return "出现异常";
+        }
 
 
         //用户验证成功注册
-        if(userService.registry(user)){
-            emailService.setStatus(user.getEmail());
-            return "注册成功";
+        try {
+
+        }catch (Exception e){
+            return "清闲获取邮箱";
         }
+
 
         //用户验证失败注册
         return "注册失败";
@@ -61,9 +62,9 @@ public class UserController {
     /**
      * 前台用户登录
      */
-    @RequestMapping("/login")
-    public String login(String name,String pass){
-        return loginm(name, pass);
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String login(@RequestBody User user){
+        return loginm(user.getUname(),user.getPass());
     }
     /**
      * 前台用户删除
@@ -73,7 +74,16 @@ public class UserController {
         return userService.deleteuser(id);
     }
     /**
-     * 后台管理员等公路验证
+     * 注销
+     */
+    @RequestMapping("/logout")
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "注销成功";
+    }
+    /**
+     * 后台管理员等登陆验证
      */
     @RequestMapping("/loginAdmin")
     public String loginAdmin(String name,String pass){
@@ -93,7 +103,6 @@ public class UserController {
         try{
             subject.login(token);
         }catch (AuthenticationException e){
-            System.out.println("账户名和或者密码错误");
             return "账户名和或者密码错误";
         }catch (NullPointerException e){
             return "该用户没有注册";

@@ -27,11 +27,18 @@ public class EmailController {
         try {
            code= mailUtils.getCode(email);
         }catch (Exception e){
-            return "邮箱验证码获取失败";
+            e.printStackTrace();
+            return "获取验证码出现异常";
         }
         //存储到数据库
-        if(emailService.save(email,code))
-            return code;
+        try {
+            if(emailService.save(email,code))
+                return code;
+        }catch (Exception e){
+            e.printStackTrace();
+            return "保存出现异常";
+        }
+
         return"邮箱验证码获取失败";
     }
     /**
@@ -40,5 +47,19 @@ public class EmailController {
     @RequestMapping("/deleteemail")
     public String deleteemail(Integer id){
         return emailService.deleteemail(id);
+    }
+
+    /**
+     * 邮箱验证码验证
+     * @param mail,code
+     * @return
+     */
+    @RequestMapping("/checkemailcode")
+    public String checkemailcode(String mail,String code){
+        return emailService.checkemailcode(mail,code);
+    }
+    @RequestMapping("/checkmail")
+    public String checkmail(String mail){
+        return emailService.isStatus(mail);
     }
 }

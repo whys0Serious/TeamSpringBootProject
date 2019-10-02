@@ -34,6 +34,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/loginSysAdmin");
         Map map=new HashMap();
         map.put("/adminmanage","authc");
+        map.put("/addcart","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }
