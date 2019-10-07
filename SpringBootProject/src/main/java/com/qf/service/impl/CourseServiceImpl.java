@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
@@ -43,6 +45,17 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course findById(Integer cid) {
         return courseRepository.findById(cid).get();
+    }
+
+
+    @Override
+    public List<Course> findShow(String info, Integer ctid) {
+        return courseRepository.findByInfoAndCtid(info,ctid);
+    }
+
+    @Override
+    public List<Course> findAllCourse(Integer ctid) {
+        return courseRepository.findAllByCtid(ctid);
     }
 
 }
