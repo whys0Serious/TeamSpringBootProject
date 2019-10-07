@@ -22,6 +22,9 @@ public class UserController {
     private UserService userService;
     @Autowired
     private EmailService emailService;
+
+
+
     @RequestMapping(value = "/registry",method = RequestMethod.POST)
     public String regisrty(@RequestBody User user){
         //验证邮箱用户是否激活
@@ -90,7 +93,7 @@ public class UserController {
         return loginm(name, pass);
     }
     /**
-     * 后台超级管理员等公路验证
+     * 后台超级管理员登录验证
      */
     @RequestMapping("/loginSysAdmin")
     public String loginSysAdmin(String name,String pass){

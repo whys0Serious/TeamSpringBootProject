@@ -8,4 +8,6 @@ public interface UserService  {
     boolean findByName(String name);
 
     String deleteuser(Integer id);
+
+
 }
