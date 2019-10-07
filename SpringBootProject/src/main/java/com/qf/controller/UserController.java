@@ -4,13 +4,17 @@ import com.qf.domain.EmailCode;
 import com.qf.domain.User;
 import com.qf.service.EmailService;
 import com.qf.service.UserService;
+import com.qf.utils.BeanList;
 import com.qf.utils.MailUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *用户给管理模块
@@ -111,6 +115,21 @@ public class UserController {
             return "该用户没有注册";
         }
         return "登陆成功";
+    }
+    @RequestMapping("/findAlluserBypage")
+    public BeanList findAlluserBypage(Integer page, Integer size){
+        Pageable pageable=PageRequest.of(page-1,size);
+        return userService.findAlluserBypage(pageable);
+    }
+    @RequestMapping("/findBykeysearch")
+    public BeanList findAlluserBypage(String findBykeysearch,Integer page, Integer size){
+        Pageable pageable=PageRequest.of(page-1,size);
+        return userService.findAlluserByKey(pageable,findBykeysearch);
+
+    }
+    @RequestMapping(value = "/uploaduseima",method = RequestMethod.POST)
+    public String uploaduseima(MultipartFile file){
+        return userService.uploaduseima(file);
     }
 
 
