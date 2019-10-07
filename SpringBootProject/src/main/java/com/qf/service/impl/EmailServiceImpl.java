@@ -47,7 +47,7 @@ public class EmailServiceImpl implements EmailService {
     }
     @Override
     public boolean save(String mailname,String code) {
-        int i = emailRepository.deleteByMailname(mailname);
+//        int i = emailRepository.deleteByMailname(mailname);
         EmailCode emailCode=new EmailCode();
         emailCode.setMailname(mailname);
         emailCode.setCode(code);

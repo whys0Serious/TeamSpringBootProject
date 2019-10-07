@@ -39,9 +39,9 @@ public class MailUtils {
         StringBuffer str=new StringBuffer();
         Random random=new Random();
         for (int i = 0; i < 6; i++) {
-            int lenth=code.length()-1;
+            int lenth=code.length();
             int rindex=random.nextInt(lenth);
-            str.append(code.substring(rindex-1,rindex));
+            str.append(code.substring(rindex,rindex+1));
         }
         //用数组工具类返回数组字符串
         return str.toString();

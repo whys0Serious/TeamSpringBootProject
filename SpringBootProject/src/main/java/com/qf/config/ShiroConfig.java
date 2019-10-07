@@ -29,6 +29,9 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
+        /**
+         * shiro控制了三种不同身份的登陆
+         */
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setLoginUrl("/loginAdmin");
         shiroFilterFactoryBean.setLoginUrl("/loginSysAdmin");
