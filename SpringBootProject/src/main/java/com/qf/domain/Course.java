@@ -2,6 +2,7 @@ package com.qf.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,7 +24,11 @@ public class Course {
         private Date time;
         private String mainpic;
         private Integer pic_num;
-        private Integer ct_id;
-        private Integer th_id;
+        @Column(name = "ct_id")
+        private Integer ctid;
+        @Column(name = "th_id")
+        private Integer thid;
+        @Column(name = "cou_time")
+        private float coutime;  //课时
 
 }

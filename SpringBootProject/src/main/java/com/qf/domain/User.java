@@ -14,6 +14,7 @@ public class User {
     private Integer uid;
     private String uname;
     private String email;//邮箱账号
-    private char sex;//用单选框,存储一个字节
+    private String sex;
+    private String imageUrl;
     private String pass;
 }

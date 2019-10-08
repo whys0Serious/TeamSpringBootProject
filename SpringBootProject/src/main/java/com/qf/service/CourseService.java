@@ -3,6 +3,8 @@ package com.qf.service;
 import com.qf.domain.Course;
 import com.qf.utils.Response;
 
+import java.util.List;
+
 public interface CourseService {
    //查询全部
    Response findAll(Integer page, Integer size);
@@ -14,4 +16,17 @@ public interface CourseService {
     Course update(Course course);
     //根据id查询
     Course findById(Integer cid);
+
+    //按课程分类展示课程（小初高+推荐）
+    List<Course> findShow(String info, Integer ct_id);
+
+
+    //按推荐展示课程（暂时是当info等于100时）
+    List<Course> findShow(String info);
+
+    //按课程分类查询所有
+    List<Course> findAllCourse(Integer ctid);
+
+    //根据编号查询课程详情
+    Course findCourseInfo(Integer cid);
 }
