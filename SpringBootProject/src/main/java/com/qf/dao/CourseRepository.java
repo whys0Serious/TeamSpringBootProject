@@ -10,4 +10,7 @@ public interface CourseRepository extends JpaRepository<Course,Integer> {
     List<Course> findByInfoAndCtid(String info, Integer ctid);
 
     List<Course> findAllByCtid(Integer ctid);
+
+    //热门推荐
+    List<Course> findByInfo(String info);
 }

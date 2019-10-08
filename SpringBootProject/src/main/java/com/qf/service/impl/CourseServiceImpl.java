@@ -58,4 +58,11 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findAllByCtid(ctid);
     }
 
+
+    //热门推荐
+    @Override
+    public List<Course> findShow(String info) {
+        return courseRepository.findByInfo(info);
+    }
+
 }

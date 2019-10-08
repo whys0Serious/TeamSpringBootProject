@@ -19,6 +19,12 @@ public interface CourseService {
 
     //按课程分类展示课程（小初高+推荐）
     List<Course> findShow(String info, Integer ct_id);
+
+
+    //按推荐展示课程（暂时是当info等于100时）
+    List<Course> findShow(String info);
+
     //按课程分类查询所有
     List<Course> findAllCourse(Integer ctid);
+
 }

@@ -27,5 +27,6 @@ public class Course {
         @Column(name = "ct_id")
         private Integer ctid;
         private Integer th_id;
+        private float cou_time;  //课时
 
 }

@@ -40,8 +40,23 @@ public class CourseController {
     public List<Course> findCourse(@PathVariable String info, @PathVariable Integer type){
         return  courseService.findShow(info,type);
     }
+
+
     @RequestMapping("/findAllCourse/{type}")
     public List<Course> findAllCourse(@PathVariable Integer type){
         return courseService.findAllCourse(type);
     }
+
+
+
+
+    //按照推荐展示课程
+    @RequestMapping("/findShow/{info}")
+    public List<Course> findCourse(@PathVariable String info){
+        return  courseService.findShow(info);
+    }
+
+
+
+
 }
