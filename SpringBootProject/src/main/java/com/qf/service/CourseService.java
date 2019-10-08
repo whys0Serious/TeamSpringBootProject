@@ -27,4 +27,6 @@ public interface CourseService {
     //按课程分类查询所有
     List<Course> findAllCourse(Integer ctid);
 
+    //根据编号查询课程详情
+    Course findCourseInfo(Integer cid);
 }

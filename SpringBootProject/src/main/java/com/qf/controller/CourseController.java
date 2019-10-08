@@ -47,16 +47,16 @@ public class CourseController {
         return courseService.findAllCourse(type);
     }
 
-
-
-
     //按照推荐展示课程
     @RequestMapping("/findShow/{info}")
     public List<Course> findCourse(@PathVariable String info){
         return  courseService.findShow(info);
     }
 
-
-
+    //根据课程编号查询课程详情
+    @RequestMapping(value = "/findCourseInfo",method = RequestMethod.POST)
+    public Course findCourseInfo(@RequestBody Course course){
+        return courseService.findCourseInfo(course.getCid());
+    }
 
 }

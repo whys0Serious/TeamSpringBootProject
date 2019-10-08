@@ -65,4 +65,8 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findByInfo(info);
     }
 
+    @Override
+    public Course findCourseInfo(Integer cid) {
+        return courseRepository.findByCid(cid);
+    }
 }
