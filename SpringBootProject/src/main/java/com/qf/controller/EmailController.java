@@ -62,4 +62,11 @@ public class EmailController {
     public String checkmail(String mail){
         return emailService.isStatus(mail);
     }
+    /**
+     * 验证码获取
+     */
+    @RequestMapping("/getcodepwd")
+    public String getcodepwd(){
+        return mailUtils.randomcode();
+    }
 }

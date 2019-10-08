@@ -1,10 +1,10 @@
 package com.qf.controller;
+
 import com.qf.domain.User;
 import com.qf.service.EmailService;
 import com.qf.service.UserService;
-import com.qf.utils.Response;
 import com.qf.utils.BeanList;
-import com.qf.utils.MailUtils;
+import com.qf.utils.Response;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -14,6 +14,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *用户给管理模块
@@ -59,7 +63,6 @@ public class UserController {
         } catch (Exception e) {
             return "出现异常";
         }
-
 
         //用户验证成功注册
         try {
@@ -154,6 +157,31 @@ public class UserController {
     @RequestMapping(value = "/uploaduseima",method = RequestMethod.POST)
     public String uploaduseima(MultipartFile file){
         return userService.uploaduseima(file);
+    }
+
+    /**
+     * 修改密码
+     */
+    @RequestMapping("/updatepwd")
+    public String updatepwd(String name,String pass){
+        return userService.updatepwd(name,pass);
+    }
+    @RequestMapping(value = "/rememberme")
+    public String rememberme(String name,String pass, HttpServletResponse response){
+        System.out.println(name);
+        Cookie cookie=new Cookie(name,pass);
+        cookie.setMaxAge(60*60*24*30);
+        response.addCookie(cookie);
+        return "nu";
+    }
+    @RequestMapping("/gtepasswod")
+    public String gtepasswod(String name, HttpServletRequest httpServletRequest){
+        for (Cookie cookie : httpServletRequest.getCookies()) {
+            System.out.println(cookie.getName());
+            if(cookie.getName().equals(name))
+                return cookie.getValue();
+        }
+        return  "";
     }
 
 }

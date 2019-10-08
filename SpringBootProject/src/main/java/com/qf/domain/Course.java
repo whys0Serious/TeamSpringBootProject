@@ -6,14 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 import java.util.Date;
 
 @Data
 @Entity
 public class Course {
-
-
         @GeneratedValue
         @Id
         private Integer cid;

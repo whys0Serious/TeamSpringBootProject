@@ -28,4 +28,6 @@ public interface UserService  {
     BeanList findAlluserByKey(Pageable pageable, String findBykeysearch);
 
     String uploaduseima(MultipartFile file);
+
+    String updatepwd(String name, String email);
 }

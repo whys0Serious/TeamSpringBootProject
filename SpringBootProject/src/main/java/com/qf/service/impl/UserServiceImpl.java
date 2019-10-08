@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.EmailRepository;
 import com.qf.dao.UserRepository;
 import com.qf.domain.User;
 import com.qf.service.UserService;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -31,14 +33,25 @@ public class UserServiceImpl implements UserService {
     public String uploaduseima(MultipartFile file) {
         return uploadUtils.upload(file);
     }
+
+    @Override
+    public String updatepwd(String name, String pwd) {
+//        return userRepository.updatePwd(name,pwd)==1?"修改成功":"修改失败";
+        return null;
+    }
+
     @Override
     public boolean findByName(String name) {
         return userRepository.findByUname(name) == null ? true : false;
     }
-
+    @Autowired
+    private EmailRepository emailRepository;
     @Override
     public String deleteuser(Integer id) {
         userRepository.deleteById(id);
+        Optional<User> byId = userRepository.findById(id);
+        User user = byId.get();
+        emailRepository.deleteByMailname(user.getEmail());
         return "删除成功";
     }
 

@@ -3,7 +3,6 @@ package com.qf.controller;
 import com.qf.domain.Course;
 import com.qf.service.CourseService;
 import com.qf.utils.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
