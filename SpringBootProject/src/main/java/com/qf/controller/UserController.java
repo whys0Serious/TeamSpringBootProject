@@ -183,5 +183,11 @@ public class UserController {
         }
         return  "";
     }
+    @RequestMapping("/getuseradnima")
+    public String user(){
 
+        Subject subject = SecurityUtils.getSubject();
+        String principal = (String) subject.getPrincipal();
+        return principal;
+    }
 }
