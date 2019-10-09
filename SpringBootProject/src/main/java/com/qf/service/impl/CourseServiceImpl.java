@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -28,8 +29,10 @@ public class CourseServiceImpl implements CourseService {
 
 
     @Override
-    public Integer delete(Integer cid) {
-        return null;
+    public String delete(Course course) {
+        courseRepository.deleteById(course.getCid());
+
+        return "删除成功";
     }
 
     @Override
@@ -44,7 +47,13 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course findById(Integer cid) {
-        return courseRepository.findById(cid).get();
+        Optional<Course> byId = courseRepository.findById(cid);
+
+        if (byId.isPresent()){
+            Course course = byId.get();
+            return course;
+        }
+        return null;
     }
 
 

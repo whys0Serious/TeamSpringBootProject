@@ -18,7 +18,7 @@ public class Course {
         @Id
         private Integer cid;
         private String cname;
-        private float price;
+        private Float price;
         private String details;
         private String info;
         private Date time;
@@ -27,6 +27,6 @@ public class Course {
         @Column(name = "ct_id")
         private Integer ctid;
         private Integer th_id;
-        private float cou_time;  //课时
+        private Float cou_time;  //课时
 
 }

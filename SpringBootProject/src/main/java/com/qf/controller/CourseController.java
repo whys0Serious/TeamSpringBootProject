@@ -21,17 +21,23 @@ public class CourseController {
     public Course add (@RequestBody Course course ){
         return  courseService.add(course);
     }
-    @RequestMapping("/delete/{cid}")
-    public void delete(@PathVariable("cid") Integer cid){
-         courseService.delete(cid);
+
+    @RequestMapping("/deleteCourse")
+    public String deleteUser(@RequestBody Course course){
+
+        return courseService.delete(course);
     }
+
     @RequestMapping("/update")
     public Course update(@RequestBody Course course){
+        System.out.println(course);
         return  courseService.update(course);
     }
-    @RequestMapping("/findById")
-    public Course findById(@RequestBody Course course){
-        return courseService.findById(course.getCid());
+
+
+    @RequestMapping(value = "/findById/{cid}")
+    public Course findById(@PathVariable Integer cid){
+        return courseService.findById(cid);
     }
 
 
