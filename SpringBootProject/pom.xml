@@ -77,6 +77,13 @@
             <artifactId>spring-mock</artifactId>
             <version>2.0.8</version>
         </dependency>
+        <!--支付宝-->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.3.49.ALL</version>
+        </dependency>
+
     </dependencies>
     <!--逆向工程插件-->
     <build>
