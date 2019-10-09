@@ -27,7 +27,7 @@ public class MailUtils {
 //        javaMailSender.send(simpleMailMessage);
         return randomcode;
     }
-    private  String randomcode(){
+    public   String randomcode(){
         /**
          * 字母数字随机数池
          */

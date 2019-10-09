@@ -13,11 +13,17 @@ import java.util.Date;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer th_id;
-    private String th_sex;
-    private String th_email;
-    private String th_details;
-    private String th_name;
-    private String th_pic;
+    @Column(name = "th_id")
+    private Integer thid;
+    @Column(name = "th_sex")
+    private String thsex;
+    @Column(name = "th_email")
+    private String themail;
+    @Column(name = "th_detail")
+    private String thdetail;
+    @Column(name = "th_name")
+    private String thname;
+    @Column(name = "th_pic")
+    private String thpic;
 
 }

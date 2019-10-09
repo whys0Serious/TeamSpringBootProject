@@ -13,8 +13,8 @@ import java.util.Date;
 public class DeleteEmailCode {
     @Autowired
     private EmailRepository repository;
-//    @Scheduled(cron="*/*/1 * * * ?")
-//    public void task(){
-//        System.out.println(new Date()+":共删除了"+repository.deleteByStatus((byte)0)+"条垃圾验证码");
-//    }
+    @Scheduled(cron="0 */1 * * * ?")
+    public void task(){
+        System.out.println(new Date()+":共删除了"+repository.deleteByStatus((byte)0)+"条垃圾验证码");
+    }
 }

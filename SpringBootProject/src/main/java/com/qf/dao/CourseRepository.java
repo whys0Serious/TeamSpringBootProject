@@ -13,4 +13,7 @@ public interface CourseRepository extends JpaRepository<Course,Integer> {
 
     //热门推荐
     List<Course> findByInfo(String info);
+
+    //查询课程详情
+    Course findByCid(Integer cid);
 }
