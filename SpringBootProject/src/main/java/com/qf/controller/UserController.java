@@ -177,17 +177,17 @@ public class UserController {
     @RequestMapping("/gtepasswod")
     public String gtepasswod(String name, HttpServletRequest httpServletRequest){
         for (Cookie cookie : httpServletRequest.getCookies()) {
-            System.out.println(cookie.getName());
             if(cookie.getName().equals(name))
                 return cookie.getValue();
         }
         return  "";
     }
     @RequestMapping("/getuseradnima")
-    public String user(){
+    public User user(){
 
         Subject subject = SecurityUtils.getSubject();
         String principal = (String) subject.getPrincipal();
-        return principal;
+        User user = userService.finduser(principal);
+        return user;
     }
 }

@@ -4,7 +4,6 @@ import com.qf.domain.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-
 public interface CourseRepository extends JpaRepository<Course,Integer> {
 
     List<Course> findByInfoAndCtid(String info, Integer ctid);
@@ -16,4 +15,7 @@ public interface CourseRepository extends JpaRepository<Course,Integer> {
 
     //查询课程详情
     Course findByCid(Integer cid);
+    /**
+     * 根据课程编号查老师
+     */
 }

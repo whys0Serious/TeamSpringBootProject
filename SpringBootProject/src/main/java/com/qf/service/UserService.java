@@ -30,4 +30,9 @@ public interface UserService  {
     String uploaduseima(MultipartFile file);
 
     String updatepwd(String name, String email);
+
+    /**
+     * 再次根据name查对象
+     */
+    User finduser(String name);
 }
