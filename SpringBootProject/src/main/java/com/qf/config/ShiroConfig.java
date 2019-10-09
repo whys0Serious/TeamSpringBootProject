@@ -38,6 +38,7 @@ public class ShiroConfig {
         Map map=new HashMap();
         map.put("/adminmanage","authc");
         map.put("/addcart","authc");
+        map.put("/logininterrept","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }
