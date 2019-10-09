@@ -49,10 +49,15 @@ public class UserController {
         return  userService.update(user);
     }
     @RequestMapping("/findById1")
-    public User findById(@RequestBody User user){
-        return userService.findById(user.getUid());
+    public User findById(Integer id){
+        return userService.findById(id);
     }
 
+    @RequestMapping(value = "/updateusery",method = RequestMethod.POST)
+    public String updateusery(@RequestBody User user){
+
+        return userService.updateusery(user);
+    }
     @RequestMapping(value = "/registry1", method = RequestMethod.POST)
     public String regisrty(@RequestBody User user) {
         //验证邮箱用户是否激活

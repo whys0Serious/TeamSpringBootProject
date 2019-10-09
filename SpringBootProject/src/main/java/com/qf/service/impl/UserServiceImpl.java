@@ -100,6 +100,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String updateusery(User user) {
+        return userRepository.save(user)!=null?"成功":"失败";
+    }
+
+    @Override
     public User findById(Integer uid) {
         return userRepository.findById(uid).get();
     }

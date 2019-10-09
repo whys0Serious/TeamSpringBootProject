@@ -42,4 +42,6 @@ public interface UserService  {
     List<Admin> findalldmin();
 
     boolean addadmin(Admin admin);
+
+    String updateusery(User user);
 }
