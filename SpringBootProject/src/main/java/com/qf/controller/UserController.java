@@ -1,7 +1,6 @@
 package com.qf.controller;
 
 import com.qf.domain.Admin;
-import com.qf.domain.SysAdmin;
 import com.qf.domain.User;
 import com.qf.service.EmailService;
 import com.qf.service.UserService;
@@ -127,10 +126,6 @@ public class UserController {
     /**
      * 后台超级管理员登录验证
      */
-    @RequestMapping("/loginSysAdmin")
-    public String loginSysAdmin(@RequestBody SysAdmin sysAdmin){
-        return loginm(sysAdmin.getName(), sysAdmin.getPass());
-    }
 
     private String loginm(String name, String pass) {
         UsernamePasswordToken token = new UsernamePasswordToken(name, pass);
