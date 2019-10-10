@@ -1,15 +1,16 @@
 package com.qf;
 
+import java.math.BigDecimal;
+
 public class dj {
     public static void main(String[] args) {
-        int i = 1;
-        i = i++;
-        int j = i++;
 
-        int k = i + ++i * i++;
+        BigDecimal a=new BigDecimal(5.001);
+        BigDecimal b=new BigDecimal(5);
 
-        System.out.println("i=" + i);
-        System.out.println("j=" + j);
-        System.out.println("k=" + k);
+        System.out.println(a.add(b));
+        Double c=1000000.001;
+        Double d=1.01;
+        System.out.println(c+d);
     }
 }

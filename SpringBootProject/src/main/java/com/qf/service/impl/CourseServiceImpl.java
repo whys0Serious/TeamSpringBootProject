@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseRepository courseRepository;
@@ -41,6 +43,24 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course update(Course course) {
         return courseRepository.saveAndFlush(course);
+    }
+
+    @Override
+    public String upima(Integer cid, String ima) {
+        Optional<Course> byId = courseRepository.findById(cid);
+        Course course = byId.get();
+        course.setMainpic(ima);
+        return courseRepository.save(course).toString();
+    }
+
+    @Override
+    public Course findbycname(String cname) {
+        return courseRepository.findByCname(cname);
+    }
+
+    @Override
+    public List<Course> findbyclike(String str) {
+        return courseRepository.findByCnameLike("%"+str+"%");
     }
 
     @Override

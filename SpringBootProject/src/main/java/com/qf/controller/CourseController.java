@@ -29,7 +29,6 @@ public class CourseController {
 
     @RequestMapping("/update")
     public Course update(@RequestBody Course course){
-        System.out.println(course);
         return  courseService.update(course);
     }
 
@@ -69,6 +68,22 @@ public class CourseController {
     @RequestMapping(value = "/findCourseInfo",method = RequestMethod.POST)
     public Course findCourseInfo(@RequestBody Course course){
         return courseService.findCourseInfo(course.getCid());
+    }
+    //根据课名模糊查询
+    @RequestMapping("/findbyclike")
+    public List<Course> findbyclike(String like){
+        return courseService.findbyclike(like);
+    }
+    //根据课程名关键字查询对象
+    @RequestMapping("/findbycname")
+    public Course findbycname(String cname){
+        return courseService.findbycname(cname);
+    }
+
+    //修改课程图片
+    @RequestMapping("/upima")
+    public String upima(Integer id,String ima){
+        return courseService.upima(id,ima);
     }
 
 }
