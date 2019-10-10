@@ -31,21 +31,34 @@ public class MyRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String principal = (String) token.getPrincipal();
-        User user=userRepository.findByUname(principal);
-        if(user!=null){
-            SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(principal,user.getPass(),getName());
-            return authenticationInfo;
+        if(principal.contains("用户")){
+            String[] split = principal.split(",");
+            User user=userRepository.findByUname(split[0]);
+            if(user!=null){
+                SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(principal,user.getPass(),getName());
+                return authenticationInfo;
+            }
         }
-        SysAdmin sysAdmin = sysAdminRepository.findByName(principal);
-        if(sysAdmin!=null){
-            SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(principal,sysAdmin.getPass(),getName());
-            return authenticationInfo;
+        if(principal.contains("管理员")){
+            String[] split = principal.split(",");
+            SysAdmin sysAdmin = sysAdminRepository.findByName(split[0]);
+
+
+            if(sysAdmin!=null){
+                SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(principal,sysAdmin.getPass(),getName());
+                return authenticationInfo;
+            }
         }
-        Admin admin = adminRepository.findByName(principal);
-        if(admin!=null){
-            SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(principal,admin.getPass(),getName());
-            return authenticationInfo;
+        if(principal.contains("superman")){
+            String[] split = principal.split(",");
+            Admin admin = adminRepository.findByName(split[0]);
+            if(admin!=null){
+                SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(principal,admin.getPass(),getName());
+                return authenticationInfo;
+            }
         }
+
+
         return null;
     }
 }
