@@ -208,7 +208,11 @@ public class UserController {
     public String logininterrept(){
         return "";
     }
-
+    //修改用户图片
+    @RequestMapping("/upuserima")
+    public String upuserima(Integer id,String ima){
+        return userService.upima(id,ima);
+    }
 
 
 }
