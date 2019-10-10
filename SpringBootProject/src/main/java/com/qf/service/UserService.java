@@ -46,4 +46,5 @@ public interface UserService  {
     String updateusery(User user);
 
 
+    String upima(Integer id, String ima);
 }

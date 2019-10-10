@@ -104,6 +104,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String upima(Integer id, String ima) {
+        User user = userRepository.findById(id).get();
+        user.setImageUrl(ima);
+        User save = userRepository.save(user);
+        return save.toString();
+    }
+
+    @Override
     public User findById(Integer uid) {
         return userRepository.findById(uid).get();
     }
