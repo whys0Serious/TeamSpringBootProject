@@ -25,7 +25,7 @@ public class AlipayUtil {
                 "    \"total_amount\":"+price+"," +
                 "    \"subject\":\""+name+"\"," +
                 "    \"body\":\""+name+"\"," +
-                "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
+                "    \"passback_parfdams\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
                 "    \"extend_params\":{" +
                 "    \"sys_service_provider_id\":\"2088511833207847\"" +
                 "    }"+

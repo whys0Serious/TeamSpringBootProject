@@ -58,6 +58,13 @@ public class CourseController {
         return  courseService.findShow(info);
     }
 
+
+    //根据课程名称分类
+    @RequestMapping(value = "/findCourseByName",method = RequestMethod.POST)
+    public List<Course> findCourseByName(@RequestBody Course course){
+            return courseService.findCourseByName(course.getCtid(),course.getCname());
+    }
+
     //根据课程编号查询课程详情
     @RequestMapping(value = "/findCourseInfo",method = RequestMethod.POST)
     public Course findCourseInfo(@RequestBody Course course){
