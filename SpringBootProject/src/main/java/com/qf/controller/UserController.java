@@ -1,6 +1,7 @@
 package com.qf.controller;
 
 import com.qf.domain.Admin;
+import com.qf.domain.SysAdmin;
 import com.qf.domain.User;
 import com.qf.service.EmailService;
 import com.qf.service.UserService;
@@ -119,16 +120,16 @@ public class UserController {
      * 后台管理员等登陆验证
      */
     @RequestMapping("/loginAdmin")
-    public String loginAdmin(String name, String pass) {
-        return loginm(name, pass);
+    public String loginAdmin(@RequestBody Admin admin) {
+        return loginm(admin.getName(), admin.getPass());
     }
 
     /**
      * 后台超级管理员登录验证
      */
     @RequestMapping("/loginSysAdmin")
-    public String loginSysAdmin(String name,String pass){
-        return loginm(name, pass);
+    public String loginSysAdmin(@RequestBody SysAdmin sysAdmin){
+        return loginm(sysAdmin.getName(), sysAdmin.getPass());
     }
 
     private String loginm(String name, String pass) {
