@@ -18,6 +18,8 @@ public interface CourseRepository extends JpaRepository<Course,Integer> {
     /**
      * 根据课程编号查老师
      */
+    List<Course> findByCnameLike(String cname);
+    Course findByCname(String cname);
 
     //模糊查询
     List<Course> findByCtidAndCnameLike(Integer ctid,String cname);

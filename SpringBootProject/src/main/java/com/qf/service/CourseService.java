@@ -29,6 +29,12 @@ public interface CourseService {
 
     //根据编号查询课程详情
     Course findCourseInfo(Integer cid);
+    //根据课程名字模糊查询
+    List<Course> findbyclike(String str);
+
+    Course findbycname(String cname);
+
+    String upima(Integer cid, String ima);
 
     //模糊查询课程
    List<Course> findCourseByName(Integer ctid,String name);

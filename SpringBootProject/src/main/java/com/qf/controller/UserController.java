@@ -71,13 +71,6 @@ public class UserController {
             return "出现异常";
         }
 
-        //用户验证成功注册
-        try {
-
-        } catch (Exception e) {
-            return "清闲获取邮箱";
-        }
-
 
         //用户验证失败注册
         return "注册失败";
@@ -215,6 +208,7 @@ public class UserController {
     public String logininterrept(){
         return "";
     }
+
 
 
 }

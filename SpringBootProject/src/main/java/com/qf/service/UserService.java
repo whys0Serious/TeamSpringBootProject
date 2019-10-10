@@ -2,8 +2,8 @@ package com.qf.service;
 
 import com.qf.domain.Admin;
 import com.qf.domain.User;
-import com.qf.utils.Response;
 import com.qf.utils.BeanList;
+import com.qf.utils.Response;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,4 +44,6 @@ public interface UserService  {
     boolean addadmin(Admin admin);
 
     String updateusery(User user);
+
+
 }
