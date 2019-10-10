@@ -39,7 +39,7 @@ public class MyRealm extends AuthorizingRealm {
                 return authenticationInfo;
             }
         }
-        if(principal.contains("管理员")){
+        if(principal.contains("superman")){
             String[] split = principal.split(",");
             SysAdmin sysAdmin = sysAdminRepository.findByName(split[0]);
 
@@ -49,7 +49,7 @@ public class MyRealm extends AuthorizingRealm {
                 return authenticationInfo;
             }
         }
-        if(principal.contains("superman")){
+        if(principal.contains("管理员")){
             String[] split = principal.split(",");
             Admin admin = adminRepository.findByName(split[0]);
             if(admin!=null){
