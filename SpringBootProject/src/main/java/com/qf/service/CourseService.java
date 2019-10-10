@@ -29,4 +29,7 @@ public interface CourseService {
 
     //根据编号查询课程详情
     Course findCourseInfo(Integer cid);
+
+    //模糊查询课程
+   List<Course> findCourseByName(Integer ctid,String name);
 }

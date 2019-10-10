@@ -1,5 +1,6 @@
 package com.qf.controller;
 
+import com.qf.domain.Admin;
 import com.qf.domain.User;
 import com.qf.service.EmailService;
 import com.qf.service.UserService;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *用户给管理模块
@@ -47,10 +49,15 @@ public class UserController {
         return  userService.update(user);
     }
     @RequestMapping("/findById1")
-    public User findById(@RequestBody User user){
-        return userService.findById(user.getUid());
+    public User findById(Integer id){
+        return userService.findById(id);
     }
 
+    @RequestMapping(value = "/updateusery",method = RequestMethod.POST)
+    public String updateusery(@RequestBody User user){
+
+        return userService.updateusery(user);
+    }
     @RequestMapping(value = "/registry1", method = RequestMethod.POST)
     public String regisrty(@RequestBody User user) {
         //验证邮箱用户是否激活
@@ -167,9 +174,15 @@ public class UserController {
         return userService.updatepwd(name,pass);
     }
     @RequestMapping(value = "/rememberme")
-    public String rememberme(String name,String pass, HttpServletResponse response){
+    public String rememberme(String name,String pass, HttpServletResponse response, HttpServletRequest httpServletRequest){
         System.out.println(name);
         Cookie cookie=new Cookie(name,pass);
+        for (Cookie cookie1 : httpServletRequest.getCookies()) {
+            if(cookie1.getName().equals(name)){
+                cookie1.setValue(pass);
+                return "";
+            }
+        }
         cookie.setMaxAge(60*60*24*30);
         response.addCookie(cookie);
         return "nu";
@@ -190,4 +203,18 @@ public class UserController {
         User user = userService.finduser(principal);
         return user;
     }
+    @RequestMapping("/findalldmin")
+    public List<Admin> findalldmin(){
+        return userService.findalldmin();
+    }
+    @RequestMapping(value = "/addadmin",method = RequestMethod.POST)
+    public boolean addadmin(@ModelAttribute Admin admin){
+        return userService.addadmin(admin);
+    }
+    @RequestMapping(value = "/logininterrept")
+    public String logininterrept(){
+        return "";
+    }
+
+
 }

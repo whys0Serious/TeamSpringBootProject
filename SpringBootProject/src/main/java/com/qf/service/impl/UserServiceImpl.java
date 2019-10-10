@@ -1,7 +1,9 @@
 package com.qf.service.impl;
 
+import com.qf.dao.AdminRepository;
 import com.qf.dao.EmailRepository;
 import com.qf.dao.UserRepository;
+import com.qf.domain.Admin;
 import com.qf.domain.User;
 import com.qf.service.UserService;
 import com.qf.utils.BeanList;
@@ -12,8 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,8 +36,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updatepwd(String name, String pwd) {
+        User uname = userRepository.findByUname(name);
+        uname.setPass(pwd);
+        User save = userRepository.save(uname);
 //        return userRepository.updatePwd(name,pwd)==1?"修改成功":"修改失败";
-        return null;
+        return save.toString();
+    }
+    @Autowired
+    private AdminRepository adminRepository;
+
+    @Override
+    public boolean addadmin(Admin admin) {
+        return adminRepository.save(admin)==null?false:true;
+    }
+
+    @Override
+    public List<Admin> findalldmin() {
+        return adminRepository.findAll();
     }
 
     @Override
@@ -81,6 +100,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String updateusery(User user) {
+        return userRepository.save(user)!=null?"成功":"失败";
+    }
+
+    @Override
     public User findById(Integer uid) {
         return userRepository.findById(uid).get();
     }
@@ -115,5 +139,9 @@ public class UserServiceImpl implements UserService {
          * 当用户添加成功时返回true
          */
         return save==null?false:true;
+    }
+    @RequestMapping("/logininterrept")
+    public String logininterrept(){
+        return "";
     }
 }

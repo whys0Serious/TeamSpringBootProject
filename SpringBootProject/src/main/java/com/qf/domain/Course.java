@@ -27,5 +27,7 @@ public class Course {
         private Integer thid;//老师的id
         @Column(name = "cou_time")
         private float coutime;  //课时
+        private String thname;
+        private String thpic;
 
 }

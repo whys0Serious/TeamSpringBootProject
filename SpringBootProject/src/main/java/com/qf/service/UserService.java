@@ -1,10 +1,13 @@
 package com.qf.service;
 
+import com.qf.domain.Admin;
 import com.qf.domain.User;
 import com.qf.utils.Response;
 import com.qf.utils.BeanList;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 public interface UserService  {
     boolean registry(User user);
@@ -35,4 +38,10 @@ public interface UserService  {
      * 再次根据name查对象
      */
     User finduser(String name);
+
+    List<Admin> findalldmin();
+
+    boolean addadmin(Admin admin);
+
+    String updateusery(User user);
 }

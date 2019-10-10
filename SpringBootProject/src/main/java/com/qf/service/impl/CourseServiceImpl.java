@@ -5,9 +5,7 @@ import com.qf.domain.Course;
 import com.qf.service.CourseService;
 import com.qf.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -77,5 +75,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course findCourseInfo(Integer cid) {
         return courseRepository.findByCid(cid);
+    }
+
+    @Override
+    public List<Course> findCourseByName(Integer ctid,String name) {
+
+        return courseRepository.findByCtidAndCnameLike(ctid,"%"+name+"%");
     }
 }
