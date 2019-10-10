@@ -119,17 +119,13 @@ public class UserController {
      * 后台管理员等登陆验证
      */
     @RequestMapping("/loginAdmin")
-    public String loginAdmin(String name, String pass) {
-        return loginm(name, pass);
+    public String loginAdmin(@RequestBody Admin admin) {
+        return loginm(admin.getName(), admin.getPass());
     }
 
     /**
      * 后台超级管理员登录验证
      */
-    @RequestMapping("/loginSysAdmin")
-    public String loginSysAdmin(String name,String pass){
-        return loginm(name, pass);
-    }
 
     private String loginm(String name, String pass) {
         UsernamePasswordToken token = new UsernamePasswordToken(name, pass);

@@ -16,9 +16,9 @@ public class AlipayConfig {
    //支付宝公钥
     public  static String ALIPAY_PUBLIC_KEY="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIgHnOn7LLILlKETd6BFRJ0GqgS2Y3mn1wMQmyh9zEyWlz5p1zrahRahbXAfCfSqshSNfqOmAQzSHRVjCqjsAw1jyqrXaPdKBmr90DIpIxmIyKXv4GGAkPyJ/6FTFY99uhpiq0qadD/uSzQsefWo0aTvP/65zi3eof7TcZ32oWpwIDAQAB";
     //服务器异步通知页面
-    public static String notify_url="http://localhost:8080/#/cash";
+    public static String notify_url="http://localhost:8080/#/ApplyReturn";
     //服务器同步返回页面
-    public static String return_url ="http://localhost:8080/#/";
+    public static String return_url ="http://localhost:8080/#/dingdan";
     // 支付宝网关
     public static String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";
     //日志路径
@@ -29,6 +29,8 @@ public class AlipayConfig {
     public static String CHARSET="UTF-8";
     //RSA2
     public  static  String SIGNTYPE="RSA";
+    // RSA2
+    public static String signtype = "RSA2";
     /**
      * 写日志，方便测试（看网站需求，也可以改成把记录存入数据库）
      * @param sWord 要写入日志里的文本内容
