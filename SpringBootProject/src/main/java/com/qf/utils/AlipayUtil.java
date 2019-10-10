@@ -5,12 +5,19 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.qf.config.AlipayConfig;
+import com.qf.config.AlipayNotifyParam;
+import com.qf.dao.OrderRepository;
+import com.qf.domain.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Component
 public class AlipayUtil {
+    public String trade_no;
     public String pay(Float price,String name) throws AlipayApiException {
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl,
                 AlipayConfig.app_id,AlipayConfig.merchant_private_key,
@@ -18,7 +25,8 @@ public class AlipayUtil {
                 "json","utf-8",AlipayConfig.alipay_public_key,"RSA2");
         //创建API对应的request
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-               String trade_no=tradeno();//随机获得订单编号；
+                trade_no=tradeno();//随机获得订单编号；
+        System.out.println(trade_no);
         alipayRequest.setBizContent("{" +
                 "    \"out_trade_no\":\""+trade_no+"\"," +
                 "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
@@ -31,6 +39,7 @@ public class AlipayUtil {
                 "    }"+
                 "  }");
         String form="";
+        alipayRequest.setReturnUrl(AlipayConfig.return_url);
         //调用SDK生成表单        System.out.println(response.getBody());
         form = alipayClient.pageExecute(alipayRequest).getBody();
         return form;
@@ -45,4 +54,6 @@ public class AlipayUtil {
         }
         return stringBuffer.toString();
     }
+
+
 }
