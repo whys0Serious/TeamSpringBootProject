@@ -8,6 +8,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,16 @@ public class MyRealm extends AuthorizingRealm {
     private AdminRepository adminRepository;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+        SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
+
+        String principal = (String) principals.getPrimaryPrincipal();
+        User uname = userRepository.findByUname(principal);
+        if(uname.getQaunxian()==1||uname.getQaunxian()==2){
+            authorizationInfo.addStringPermission("管理员");
+            authorizationInfo.addStringPermission("超级管理员");
+        }
+
+        return authorizationInfo;
     }
 
     @Override
