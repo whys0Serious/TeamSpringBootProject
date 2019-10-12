@@ -2,6 +2,7 @@ package com.qf.service.impl;
 
 import com.qf.dao.AdminRepository;
 import com.qf.dao.EmailRepository;
+import com.qf.dao.OrderRepository;
 import com.qf.dao.UserRepository;
 import com.qf.domain.Admin;
 import com.qf.domain.User;
@@ -110,6 +111,14 @@ public class UserServiceImpl implements UserService {
         User save = userRepository.save(user);
         return save.toString();
     }
+    @Autowired
+    private OrderRepository orderRepository;
+    @Override
+    public String findbysatus(Integer uid) {
+//        return orderRepository.findAllByUid();
+        return null;
+    }
+
 
     @Override
     public User findById(Integer uid) {
