@@ -37,7 +37,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/loginSysAdmin");
         shiroFilterFactoryBean.setLoginUrl("/loginSysAdmin");
         Map map=new HashMap();
-        map.put("/logininterrept","authc");
+        map.put("/logininterrept1","authc");
         map.put("/logininterrept","perms[管理员]");
         map.put("/logininterrept","perms[超级管理员]");
 

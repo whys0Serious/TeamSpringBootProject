@@ -200,8 +200,14 @@ public class UserController {
     public boolean addadmin(@ModelAttribute Admin admin){
         return userService.addadmin(admin);
     }
+    //拦截非管理员
     @RequestMapping(value = "/logininterrept")
     public String logininterrept(){
+        return "";
+    }
+    //拦截购买请求
+    @RequestMapping(value = "/logininterrept1")
+    public String logininterrept1(){
         return "";
     }
     //修改用户图片
