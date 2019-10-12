@@ -11,4 +11,7 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
 
         List<Order> findAllByUid(Integer uid);
 
+        int deleteByTradstatus(String status);
+
+
 }

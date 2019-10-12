@@ -1,14 +1,14 @@
 package com.qf.service;
 
 import com.qf.domain.Teacher;
-
-import java.util.List;
+import com.qf.utils.BeanList;
+import org.springframework.data.domain.Pageable;
 
 public interface TeacherService {
 
     Teacher findByThid(Integer thid);
 
-    List<Teacher> finallteacher();
+    BeanList finallteacher(Pageable pageable);
 
     String upthima(Integer id, String img);
 }

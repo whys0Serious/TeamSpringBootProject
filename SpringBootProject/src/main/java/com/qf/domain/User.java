@@ -17,5 +17,5 @@ public class User {
     private String sex;
     private String imageUrl;
     private String pass;
-    private int qaunxian;//一 代表用户，二代表管理员，三代表超级管理员
+    private Integer qaunxian;//一 代表用户，二代表管理员，三代表超级管理员
 }

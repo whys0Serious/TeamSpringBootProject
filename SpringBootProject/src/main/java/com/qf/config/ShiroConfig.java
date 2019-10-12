@@ -35,10 +35,12 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setLoginUrl("/loginAdmin");
         shiroFilterFactoryBean.setLoginUrl("/loginSysAdmin");
+        shiroFilterFactoryBean.setLoginUrl("/loginSysAdmin");
         Map map=new HashMap();
-        map.put("/adminmanage","authc");
-        map.put("/addcart","authc");
         map.put("/logininterrept","authc");
+        map.put("/logininterrept","perms[管理员]");
+        map.put("/logininterrept","perms[超级管理员]");
+
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

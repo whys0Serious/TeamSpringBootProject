@@ -8,6 +8,7 @@ import com.qf.config.AlipayConfig;
 import com.qf.config.AlipayNotifyParam;
 import com.qf.dao.OrderRepository;
 import com.qf.domain.Order;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 @Component
+@Data
 public class AlipayUtil {
     public String trade_no;
     public String pay(Float price,String name) throws AlipayApiException {
@@ -25,7 +27,9 @@ public class AlipayUtil {
                 "json","utf-8",AlipayConfig.alipay_public_key,"RSA2");
         //创建API对应的request
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-                trade_no=tradeno();//随机获得订单编号；
+        if(trade_no==null){
+            trade_no=tradeno();//随机获得订单编号；
+        }
         System.out.println(trade_no);
         alipayRequest.setBizContent("{" +
                 "    \"out_trade_no\":\""+trade_no+"\"," +
@@ -54,6 +58,4 @@ public class AlipayUtil {
         }
         return stringBuffer.toString();
     }
-
-
 }

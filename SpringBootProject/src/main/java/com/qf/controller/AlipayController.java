@@ -14,6 +14,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -64,13 +65,7 @@ public class AlipayController {
         return pay;
     }
 
-
     //异步返回结果
-    private static Logger logger = LoggerFactory.getLogger(AlipayController.class);
-
-
-    private ExecutorService executorService = Executors.newFixedThreadPool(20);
-
     @RequestMapping(value = "/alipay_callback",method = RequestMethod.POST)
    public List<Order> alipayCallback(@RequestBody AlipayNotifyParam alipayNotifyParam){
                 String tradnum=alipayNotifyParam.getOut_trade_no();
@@ -81,5 +76,19 @@ public class AlipayController {
                 orderRepository.saveAndFlush(order);
                 List<Order> list = orderRepository.findAllByUid(order.getUid());
                 return list;
+    }
+
+    @RequestMapping(value = "/payback",method = RequestMethod.POST)
+    public String payback(@RequestBody Order order){
+        String pay="";
+        alipayUtil.setTrade_no(order.getTradnum());
+        try {
+            pay = alipayUtil.pay(order.getTradacount(),order.getTradcname());
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        System.out.println(pay);
+        //更改订单状态
+        return pay;
     }
 }
