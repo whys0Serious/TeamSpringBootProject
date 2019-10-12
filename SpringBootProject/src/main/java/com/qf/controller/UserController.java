@@ -216,5 +216,10 @@ public class UserController {
         return userService.upima(id,ima);
     }
 
+    //查找用户订单状态
+    @RequestMapping("/findbysatus")
+    public String findbysatus(Integer uid){
+        return userService.findbysatus(uid);
+    }
 
 }

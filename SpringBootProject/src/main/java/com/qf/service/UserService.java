@@ -47,4 +47,6 @@ public interface UserService  {
 
 
     String upima(Integer id, String ima);
+
+    String findbysatus(Integer uid);
 }
