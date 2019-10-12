@@ -14,13 +14,13 @@ public class Course {
         @GeneratedValue
         @Id
         private Integer cid;
-        private String cname;
+        private String cname;//克明
         private Float price;
-        private String details;
+        private Integer details;//销量
         private String info;
         private Date time;
-        private String mainpic;
-        private Integer pic_num;
+        private String mainpic;//图片
+        private Integer pic_num;//图片数量
         @Column(name = "ct_id")
         private Integer ctid;
         @Column(name = "th_id")

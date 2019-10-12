@@ -1,7 +1,9 @@
 package com.qf.dao;
 
 import com.qf.domain.Course;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 public interface CourseRepository extends JpaRepository<Course,Integer> {
@@ -23,4 +25,9 @@ public interface CourseRepository extends JpaRepository<Course,Integer> {
 
     //模糊查询
     List<Course> findByCtidAndCnameLike(Integer ctid,String cname);
+
+    List<Course> findByCtid(Integer ctid);
+
+
+
 }

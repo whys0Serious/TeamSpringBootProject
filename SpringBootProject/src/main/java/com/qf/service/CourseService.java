@@ -38,4 +38,6 @@ public interface CourseService {
 
     //模糊查询课程
    List<Course> findCourseByName(Integer ctid,String name);
+   //降序
+//    List<Course> course();
 }
