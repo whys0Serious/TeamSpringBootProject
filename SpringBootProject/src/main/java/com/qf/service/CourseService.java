@@ -40,4 +40,6 @@ public interface CourseService {
    List<Course> findCourseByName(Integer ctid,String name);
    //降序
 //    List<Course> course();
+    //新增
+    Course insertCourseNum(Course course);
 }

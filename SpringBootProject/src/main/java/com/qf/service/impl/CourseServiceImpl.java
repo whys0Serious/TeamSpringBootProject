@@ -103,6 +103,12 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findByCtidAndCnameLike(ctid,"%"+name+"%");
     }
 
+    @Override
+    public Course insertCourseNum(Course course) {
+        Course course1 = courseRepository.saveAndFlush(course);
+        return course1;
+    }
+
     /*@Override
     public List<Course> course() {
         return courseRepository.finddesc();

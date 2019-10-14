@@ -7,6 +7,7 @@ import com.qf.dao.OrderRepository;
 import com.qf.domain.Course;
 import com.qf.domain.Order;
 import com.qf.domain.User;
+import com.qf.service.CourseService;
 import com.qf.service.UserService;
 import com.qf.utils.AlipayUtil;
 import org.apache.shiro.SecurityUtils;
@@ -33,6 +34,8 @@ public class AlipayController {
         private OrderRepository orderRepository;
         @Autowired
         private UserService userService;
+        @Autowired
+        private CourseService courseService;
 
     @RequestMapping(value = "/alipay",method = RequestMethod.POST)
     public String pay(@RequestBody Course course){
@@ -50,15 +53,19 @@ public class AlipayController {
         User user = userService.finduser(principal);//获得用户信息
         //获取订单号
         String tradeno = alipayUtil.trade_no;
-        order.setUid(user.getUid());
+            order.setUid(user.getUid());
             order.setTradacount(course.getPrice());
             order.setTradcname(course.getCname());
             order.setTradstatus("待支付");
             order.setTradnum(tradeno);
             order.setTradtime(new Date());
-        System.out.println(order.toString());
+            System.out.println(order.toString());
         //存入数据库
         Order save = orderRepository.save(order);
+        //数量增加
+        Course findbycname = courseService.findbycname(course.getCname());
+        findbycname.setDetails(findbycname.getDetails()+1);
+        courseService.insertCourseNum(findbycname);
         if(save!=null){
             System.out.println("生成一条订单信息！");
         }
