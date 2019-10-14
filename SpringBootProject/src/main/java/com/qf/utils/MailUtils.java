@@ -24,7 +24,7 @@ public class MailUtils {
         simpleMailMessage.setSubject("邮箱验证码");
         simpleMailMessage.setText("亲爱的用户,你的验证码为:"+randomcode+",请你妥善把保管(001Team)");
         //将验证码发送到对方邮箱中
-//        javaMailSender.send(simpleMailMessage);
+        javaMailSender.send(simpleMailMessage);
         return randomcode;
     }
     public   String randomcode(){

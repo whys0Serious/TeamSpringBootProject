@@ -21,7 +21,7 @@ public class DeleteEmailCode {
         System.out.println(new Date()+":共删除了"+repository.deleteByStatus((byte)0)+"条垃圾验证码");
     }
 
-    @Scheduled(cron="0 */5 * * * ?")
+    @Scheduled(cron="0 */10 * * * ?")
     public void deleteOrderNotPay(){
         System.out.println(new Date()+":已删除"+orderRepository.deleteByTradstatus("待支付")+"条未支付订单");
     }

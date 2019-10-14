@@ -1,8 +1,11 @@
 package com.qf.controller;
 
 import com.qf.domain.Course;
+import com.qf.domain.Teacher;
 import com.qf.service.CourseService;
+import com.qf.service.TeacherService;
 import com.qf.utils.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -12,12 +15,18 @@ import java.util.List;
 public class CourseController {
     @Resource
     private CourseService courseService;
+    @Autowired
+    private TeacherService teacherService;
     @RequestMapping("/findAll/{page}/{size}")
     public Response FindAll(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
         return courseService.findAll(page, size);
     }
     @RequestMapping("/add")
     public Course add (@RequestBody Course course ){
+        Teacher teacher=new Teacher();
+        teacher.setThname(course.getThname());
+        Teacher teacher1 = teacherService.addtecaher(teacher);
+        course.setThid(teacher1.getThid());
         return  courseService.add(course);
     }
 

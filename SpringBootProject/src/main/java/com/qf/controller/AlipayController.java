@@ -62,10 +62,7 @@ public class AlipayController {
             System.out.println(order.toString());
         //存入数据库
         Order save = orderRepository.save(order);
-        //数量增加
-        Course findbycname = courseService.findbycname(course.getCname());
-        findbycname.setDetails(findbycname.getDetails()+1);
-        courseService.insertCourseNum(findbycname);
+
         if(save!=null){
             System.out.println("生成一条订单信息！");
         }
@@ -77,6 +74,10 @@ public class AlipayController {
    public List<Order> alipayCallback(@RequestBody AlipayNotifyParam alipayNotifyParam){
                 String tradnum=alipayNotifyParam.getOut_trade_no();
                 Order order = orderRepository.findByTradnum(tradnum);
+        //数量增加
+        Course findbycname = courseService.findbycname(order.getTradcname());
+        findbycname.setDetails(findbycname.getDetails()+1);
+        courseService.insertCourseNum(findbycname);
                 if(order!=null){
                     order.setTradstatus("支付完成");
                 }
